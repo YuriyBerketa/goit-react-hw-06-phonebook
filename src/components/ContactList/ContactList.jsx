@@ -1,14 +1,24 @@
 import React from "react";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Contact, ContactsLi, BTN } from './ContactList.styled';
+import { deleteContact } from "redux/contactSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getFilterContacts } from "redux/selector";
 
-export function ListContact({ contacts, onContactDelete }) {
+
+
+export function ListContact() {
+    const dispatch = useDispatch();
+    const contacts = useSelector(getFilterContacts);
+    
+   
+
     return(
         <Contact>
             {contacts.map((e) =>
                 <ContactsLi key={e.id}>
                     <span>{e.name} {e.number}</span>
-                    <BTN onClick={() => onContactDelete(e.id)}>Delete</BTN>
+                    <BTN onClick={()=>dispatch(deleteContact(e.id))}>Delete</BTN>
                 </ContactsLi>)}
         </Contact>
 
@@ -17,7 +27,7 @@ export function ListContact({ contacts, onContactDelete }) {
     
 }
 
-ListContact.propTypes = {
-    contacts: PropTypes.arrayOf(Object).isRequired,
-    onContactDelete: PropTypes.func.isRequired,
-}
+// ListContact.propTypes = {
+//     contacts: PropTypes.arrayOf(Object).isRequired,
+//     onContactDelete: PropTypes.func.isRequired,
+// }

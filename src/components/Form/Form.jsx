@@ -1,9 +1,15 @@
 import React, { useState } from "react";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Forma, Label, Input , BTN} from './Form.styled';
+import { useDispatch } from "react-redux";
+import { nanoid } from "nanoid";
+import { addContact } from "redux/contactSlice";
 
 
-export function Form ({onSubmit}) {
+export function Form() {
+    
+    const dispatch = useDispatch();
+
     const [state, setState] = useState({
         name: '',
         number: '',
@@ -11,18 +17,28 @@ export function Form ({onSubmit}) {
 
    function handleInputChange(evt) {
         const { name, value } = evt.currentTarget;
-       setState(state => ({...state, [name]: value }));
+       setState(state => ({
+           ...state,
+           [name]: value
+       }));
     }
 
     function handleSubmit(evt) {
         evt.preventDefault();
 
-        onSubmit(state);
+        const contact = {
+            id: nanoid(),
+            ...state
+        };
+        dispatch(addContact(contact));
 
         res();
     }
     function res() {
-    setState({name: '', number: '',})
+        setState({
+            name: '',
+            number: '',
+        })
 }
         return (
             <Forma
@@ -55,6 +71,6 @@ export function Form ({onSubmit}) {
     }
 
 
-Form.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-}
+// Form.propTypes = {
+//     onSubmit: PropTypes.func,
+// }
