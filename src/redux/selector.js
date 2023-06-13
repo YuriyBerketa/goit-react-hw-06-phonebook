@@ -10,5 +10,5 @@ export const getFilterContacts = state => {
     return getFilterContacts; 
 };
 
-console.log(getFilterContacts);
+
 

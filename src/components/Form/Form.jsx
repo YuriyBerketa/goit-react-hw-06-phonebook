@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import PropTypes from 'prop-types';
 import { Forma, Label, Input , BTN} from './Form.styled';
 import { useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
@@ -71,6 +70,3 @@ export function Form() {
     }
 
 
-// Form.propTypes = {
-//     onSubmit: PropTypes.func,
-// }

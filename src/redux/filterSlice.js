@@ -7,7 +7,7 @@ const initialState = {
 const filterSlice = createSlice({
     name: 'filter',
     initialState: initialState,
-    redusers: {
+    reducers: {
         filterContacts: (state, action) => {
             return {filter: action.payload}
         }
@@ -16,4 +16,3 @@ const filterSlice = createSlice({
 
 export const {filterContacts} = filterSlice.actions;
 export const filterReduser = filterSlice.reducer;
-console.log(filterContacts);
